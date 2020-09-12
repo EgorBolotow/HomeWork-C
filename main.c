@@ -13,8 +13,8 @@ int main(int argc, char**argv)
     scanf("%f", &c);
     d = b*b-4*a*c;
     if (d>0) {
-        x1 = (-b + sqrt(d))/2*a;
-        x2 = (-b - sqrt(d))/2*a;
+        x1 = (-b + sqrt(d))/(2*a);
+        x2 = (-b - sqrt(d))/(2*a);
         float dec1,dec2;
         float frac1 = modf(x1,&dec1);
         float frac2 = modf(x2,&dec2);
