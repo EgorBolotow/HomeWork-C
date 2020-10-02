@@ -3,11 +3,11 @@
 int main()
 {                                                                           
     int n;          
-    int temp;
+    float temp;
     scanf("%d", &n);
-    int mass[N];
+    float mass[N];
     for (int i = 0; i<n; i++) {
-        scanf("%d", &mass[i]);
+        scanf("%f", &mass[i]);
     }
     
     for (int i = 0; i<n;i++){
@@ -17,14 +17,13 @@ int main()
                 mass[j] = mass[j+1];
                 mass[j+1] = temp;
             }    
-        } 
+        }   
     }
                                                                                                                                                         
     for (int i = 0; i<n; i++) {
-        printf("%d ", mass[i]);
+        printf("%f ", mass[i]);
     }
     
     
     return 0;
 }
-                                                                                                      
