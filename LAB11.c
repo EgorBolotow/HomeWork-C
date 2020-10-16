@@ -29,31 +29,6 @@ void where_is_first_word (char* string) {
 }
 
 
-     /*
-      * Эта функция выводит количество слов не учитывая first_word
-      */   
-
-
-
-int numbers_of_words (char* string) {
-
-    int counter = 0;
-
-    for (int i = 0; i < 100; i++) {
-
-        if (string[i] == ' ') {
-
-            counter+=1;
-
-        }
-
-        return counter;
-    }
-
-}
-
-
-
     /*
     * Эта функция помечает в таблице ASCII цифрой 1,
     * все буквы, которые есть в первом слове (first_word)
@@ -77,23 +52,50 @@ int main(void) {
 
     where_is_first_word(string);
     symbols_first_word(first_word);  
-    int n = numbers_of_words(string);
 
-    char flag = 1;
+    int p = strlen(first_word);
 
-    for (int i = 0; i<n; i++) {
+    int start = p;
 
-        for (int j = strlen(first_word); string[j] != ' '; j++) {
+    int bool = 0;
 
-            if (flag) {
+    while(1) {
 
-                
+		char c = string[p];
 
+		if (c == ' ' || c == '\0') {
+			
+
+			if (bool) {
+				
+				bool = 0;
+
+			} else {
+			
+				for (int i = start; i<p; i++) {
+                    printf("%c", string[i]);
+                }
+
+                printf(" ");
+			}
+			if (c == '\0') { 
+
+				break;
+
+			}
+
+			p++;
+			start = p; 
+
+		} else {
+
+			if (table_ASCII[c] == 1) {
+                bool = 1;
             }
+			p++;
 
-        }
-
-    }
+		}
+	}
     
   
 
