@@ -150,21 +150,5 @@ void decimal_to_10_number_system() {
     }
  
     printf("%d \n", result);
-    result2 = 0;
-    int j = i+1;
-    int o = -1;
- 
-    for (j = i +1; number[j] != '\0'; j++) {
-        int buff = 0;
-        if ((number[j] >= 65) && (number[j] <= 70)) {
-            buff = number[j] - '7';
-        } else if ((number[j] >= 48) && (number[j] <= 57)) {
-            buff = number[j] - '0';
-        }
-        result2 = result2 + (buff * negative_pow(start_number_system, o));
-        o--;
-    }
- 
-    printf("%d \n", result2);
- 
+    
 }
