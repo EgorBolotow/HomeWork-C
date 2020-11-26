@@ -53,14 +53,6 @@ void delete_list(list* head) {
 	}
 }
 
-void print_list(list* head) {
-	while(head != NULL) {
-		printf("%d ", head->value);
-		head = head->next;
-	}
-	printf("\n");
-}
-
 int main(int argc, char** argv) {
 	list* head = NULL;
 
