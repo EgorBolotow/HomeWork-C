@@ -9,7 +9,7 @@ int func (char *buf, int s) {
     int count = 0;
     int count1 = 0;
     for (int i = 0; i<s; i++) {
-        int temp = buf[i];
+        unsigned char temp = buf[i];
         while (temp) {
             if (temp%2==0) {
                 count++;
@@ -28,7 +28,7 @@ char buffer[100];
 
 int main(int argc, char *argv[])
 {
-    int a;
+    size_t b;
     int counter = 0;
     setlocale(LC_ALL, "Russian");
     char *file_name = argv[1];
@@ -41,17 +41,24 @@ int main(int argc, char *argv[])
         printf("Файл был открыт");
     }
 
+    clock_t start = clock();
+
     while (1) {
-        int b = fread(buffer,sizeof(char),100,fp);
+        b = fread(buffer,sizeof(char),100,fp);
         if (b==0) {
             break;
         }
-        int buf_counter = func(buffer,b);
-        counter += buf_counter;
+        counter += func(buffer,b);
     }
+
+    clock_t end = clock();
+
+    double time = (double)(end - start)/(double)(CLOCKS_PER_SEC/1000);
 
     printf("\n");
     printf("%d", counter);
+    printf("\n");
+    printf("Время выполнения: %lf", time);
 
     return 0;
 }
