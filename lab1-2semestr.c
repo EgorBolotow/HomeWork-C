@@ -1,3 +1,4 @@
+  
 #include <stdio.h>
 #include "math.h"
 
@@ -28,6 +29,8 @@ double taylor_series (double x, int n) {
 int main()
 {
 
-  printf ("%.4f",taylor_series(x,0));
+  printf ("My result: %.4f",taylor_series(x,0));
+  printf("\n");
+  printf("Library result: %.4f",cosh(x));
   return 0;
 }
