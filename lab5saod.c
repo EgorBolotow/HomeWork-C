@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <malloc.h>
-#include <assert.h>
 
 typedef struct node {
     int value;
@@ -14,7 +13,6 @@ typedef struct deq {
 } Deq;
 
 Deq *PushLeft(Deq *deq, int value) {
-    assert(deq);
  
     Node *node = (Node*)malloc(sizeof(Node));
     node->value = value;
@@ -33,7 +31,6 @@ Deq *PushLeft(Deq *deq, int value) {
 }
 
 Deq *PushRight(Deq *deq, int value) {
-    assert(deq);
  
     Node *node = (Node*)malloc(sizeof(Node));
     node->value = value;
@@ -51,9 +48,7 @@ Deq *PushRight(Deq *deq, int value) {
     return deq;
 }
 
-void PrintLeft(const Deq *deq)
-{
-    assert(deq);
+void PrintLeft(const Deq *deq) {
  
     Node *node = deq->left;
  
@@ -64,7 +59,6 @@ void PrintLeft(const Deq *deq)
 }
 
 void PrintRight(const Deq *deq) {
-    assert(deq);
  
     Node* node = deq->right;
  
