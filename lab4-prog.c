@@ -2,71 +2,17 @@
 #include <malloc.h>
 #include <stdlib.h>
 #include <math.h>
-#include <string.h>
 
 typedef struct list2 {
     int field;
-    struct list2 *ptr;
+    struct list2 *ptr2;
 } List2;
 
-/*********************************************************************/
-/*********************************************************************/
-/*********************************************************************/
-
-typedef struct node {
-    int value;
-    struct node *next;
-    struct node *prev;
-    struct list2 *other;
-} Node;
-
-
 typedef struct list {
-    size_t size;
-    Node *head;
-    Node *tail;
+    int field;
+    struct list *ptr;
+    struct list2 *other;
 } List;
-
-/*********************************************************************/
-/*********************************************************************/
-/*********************************************************************/
-
-List* create_List() {
-    List *temp = (List*)malloc(sizeof(List));
-    temp->size = 0;
-    temp->head = temp->tail = NULL;
- 
-    return temp;
-}
-
-void pushBack(List* list, int* value) {
-    Node *temp = (Node*)malloc(sizeof(Node));
-    if (temp == NULL) {
-        exit(3);
-    }
-    temp->value = *(value);
-    temp->next = NULL;
-    temp->prev = list->tail;
-    if (list->tail) {
-        list->tail->next = temp;
-    }
-    list->tail = temp;
- 
-    if (list->head == NULL) {
-        list->head = temp;
-    }
-    list->size++;
-}
-
-
-void print_List(List* list) {
-    Node *temp = list->head;
-    while (temp) {
-        printf("%d ", temp->value);
-        temp = temp->next;
-    }
-    printf("\n");
-}
 
 /*********************************************************************/
 /*********************************************************************/
@@ -74,99 +20,112 @@ void print_List(List* list) {
 
 List2 *init(int a) {
     List2 *lst;
-    lst = (List2*)malloc(sizeof(List));
+    lst = (List2*)malloc(sizeof(List2));
     lst->field = a;
-    lst->ptr = NULL;
+    lst->ptr2 = NULL;
     return(lst);
 }
 
 List2 *addelem(List2 *lst, int number) {
     List2 *temp, *p;
     temp = (List2*)malloc(sizeof(List2));
-    p = lst->ptr; 
-    lst->ptr = temp; 
+    p = lst->ptr2;
+    lst->ptr2 = temp;
     temp->field = number;
-    temp->ptr = p; 
+    temp->ptr2 = p;
     return(temp);
 }
 
-void listprint(List2 *lst) {
-    List2 *p;
-    p = lst;
-    do {
-        printf("%d ", p->field);
-        p = p->ptr; 
-    } while (p != NULL);
-}
 
 /*********************************************************************/
 /*********************************************************************/
 /*********************************************************************/
+
+List *init2(int a) {
+    List *lst;
+    lst = (List*)malloc(sizeof(List));
+    lst->field = a;
+    lst->ptr = NULL;
+    return(lst);
+}
+
+List *addelem2(List *lst, int number) {
+    List *temp, *p;
+    temp = (List*)malloc(sizeof(List));
+    p = lst->ptr;
+    lst->ptr = temp;
+    temp->field = number;
+    temp->ptr = p;
+    return(temp);
+}
+
+
 
 int main(void) {
     int N,K;
-    
-    List *list = create_List();
+    int counter = 0;
+    int counter2 = 0;
+    int i = 0;
+
+    List *list;
     List2 *list2;
-    int flag = 1;
-    
+
     while (1) {
         int num;
         scanf("%d", &num);
         if (num == 0) {
             break;
         }
-        pushBack(list, &num);
+        if (counter == 0) {
+            list = init2(num);
+            counter = 1;
+        }
+        addelem2(list, num);
         N++;
     }
-    
-    printf("\n");
-    printf("\n");
-    
+
     while (1) {
         int num;
         scanf("%d", &num);
         if (num == 0) {
             break;
         }
-        if (flag) {
+        if (counter2==0) {
             list2 = init(num);
-            flag = 0;
+            counter2 = 1;
         }
-        addelem(list2,num);
+        addelem(list2, num);
         K++;
     }
-    
-    int counter = 0;
-    
-    while (counter != abs(N-K)) {
-        Node *temp = list->head;
+
+    while (i!=abs(N-K)) {
+        List *temp = list;
         List2 *temp2 = list2;
-        
         temp->other = temp2;
-        temp->next;
-        temp2->ptr;
-        counter++;
+        i++;
+        temp = temp->ptr;
+        temp2 = temp2->ptr2;
     }
-    
-    Node *S = list->head;
-    
-    printf("\n\n");
-    
-    printf("%d", S->value);
-    printf("\n");
-    
+
+    List *S = list;
+
+    printf("%d\n", S->field);
+
     while (1) {
-        char *cymbol;
-        scanf("%s", cymbol);
-        if (strcmp(cymbol,"r") == 0) {
-            if (S->next == NULL) {
-                break;
-            }
-            S = S->next;
-            printf("%d", S->value);
+        char *s;
+        scanf("%s", s);
+        if (strcmp(s, "d") == 0) {
+            S=S->other;
+            printf("%d\n", S->field);
+        }
+        if (strcmp(s, "r") == 0) {
+            S=S->ptr;
+            printf("%d\n", S->field);
+        }
+        if (strcmp(s, "q")== 0) {
+            break;
         }
     }
-    
+
     return 0;
 }
