@@ -5,13 +5,10 @@ typedef struct {
     unsigned is_live: 1;
 } Point;
 
-/* Ширина игрового поля */
 #define MAP_HEIGHT 10
 
-/* Высота игрового поля */
 #define MAP_WIDTH 10
 
-// Игровое поле размером 10x10 клеток
 Point map[MAP_WIDTH][MAP_HEIGHT];
 
 void init_map (Point map[][MAP_HEIGHT]) {
@@ -153,7 +150,7 @@ int main(void) {
         live_points2 = live_points(world);
 
         if (is_optimal) {
-            printf("Optimal configuration detected");
+            printf("Optimal configuration");
         }
 
         if (live_points == 0) {
