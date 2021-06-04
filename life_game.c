@@ -146,7 +146,7 @@ int main(void) {
         copy_world(world, prev_world);
         next_generation(world, prev_world);
 
-        is_optimal = cmp_world(world, prev_world);
+        is_optimal = cmp_world(world, prev_world) == 0;
         live_points2 = live_points(world);
 
         if (is_optimal) {
